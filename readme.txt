@@ -1,0 +1,8 @@
+Basically front end developers struggle to understand the behavior of how double equals works in JavaScript. 
+It actually works based on Abstract Equality Comparison Algorithm. 
+So this application will help the developers to understand how an expression with double equals works based on AECA. 
+It will display the step by step evaluation process of the expression that uses double equals. 
+It will help the users to understand the recursive process of how evaluation happens.
+
+And this is my first project on github by using git. If anyone notices that I am doing wrong with git/github please
+poke me by using laraprabhu@gmail.com.
