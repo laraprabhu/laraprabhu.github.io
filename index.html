@@ -1,29 +1,58 @@
 <!doctype html>
 <html>
-<head>
-	<title>How JavaScript's == works?</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
-	<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
-	<script src="js/main.js"></script>
-</head>
-<body>
-<div class="wrapper">
-    <div class="headerWrapper">
+
+  <head>
+    <title>How JavaScript's == works?</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="headerWrapper">
         How JavaScript's == works?
         <div class="innerBox animate" title="Click here to view my facebook"> </div>
+      </div>
+      <div class="contentWrapper">
+        <div class="myDetails">
+          <p>Hello this is Rajaprabhu Aravindasamy. I am a front end engineer with no interest in designing a web page. That means I invest all my time in exploring javascript and node. But that doesn't mean I don't have any idea about html and css. I do
+            possess knowledge with them too. </p>
+          <p>Recently I just had a look at the Abstract Equality Comparison Algorithm, And I wanted to make a GUI for it, so that other engineers can easily learn about how it works. If you want to contact me about this project, mail me @ laraprabhu@gmail.com</p>
+        </div>
+        <div class="playArea">
+          <p class="manual">Type any valid expressions in the place of LHS and RHS. Then hit ENTER key!</p>
+          <div class="componentHolder">
+            <input placeholder="LHS : Math or [0] or [''] etc.." class="lhs componentFont componentTextBox" />
+            <input type="button" class="equals componentFont componentButton" value="==" />
+            <input placeholder="RHS : Math or [0] or [''] etc.." class="rhs componentTextBox componentFont" />
+          </div>
+        </div>
+        <div id="disqus_thread"></div>
+        <script>
+          /**
+           * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+           * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+           */
+          /*
+          var disqus_config = function () {
+          this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          */
+          (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+              s = d.createElement('script');
+
+            s.src = '//laraprabhu.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      </div>
     </div>
-	<div class="contentWrapper">	
-		<div class="myDetails">
-			<p>Hello this is Rajaprabhu Aravindasamy. I am a front end engineer with no interest in designing a web page. That means I invest all my time in exploring javascript and node. But that doesn't mean I don't have any idea about html and css. I do possess knowledge with them too. </p>
-			<p>Recently I just had a look at the Abstract Equality Comparison Algorithm, And I wanted to make a GUI for it, so that other engineers can easily learn about how it works. If you want to contact me about this project, mail me @ laraprabhu@gmail.com</p>
-		</div>
-		<div class="playArea">
-			<p class="manual">Type any valid expressions in the place of LHS and RHS. Then hit ENTER key!</p>
-			<div class="componentHolder">
-				<input placeholder="LHS : Math or [0] or [''] etc.." class="lhs componentFont componentTextBox" /><input type="button" class="equals componentFont componentButton" value="=="/><input placeholder="RHS : Math or [0] or [''] etc.." class="rhs componentTextBox componentFont" />
-			</div>
-		</div>
-	</div>
-</div>
-</body>
+    <script id="dsq-count-scr" src="//laraprabhu.disqus.com/count.js" async></script>
+  </body>
 </html>
