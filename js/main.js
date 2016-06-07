@@ -35,8 +35,8 @@ var mainObject = {
 	},
 	doBounce : function(){
 		this.obj = this.elm1.getBoundingClientRect();
-		this.x = this.elm.offsetLeft;
- 		this.y = this.elm.offsetTop;
+		this.x = parseInt(window.getComputedStyle(this.elm).left);
+ 		this.y = parseInt(window.getComputedStyle(this.elm).top);
 		if (this.x < 0 || (this.x + 20) > this.obj.width) this.incX = -this.incX;
 		if (this.y < 0 || (this.y + 20) > this.obj.height) this.incY = -this.incY;
 		this.elm.style.left = this.x + this.incX + "px";
