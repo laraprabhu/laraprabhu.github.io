@@ -5,6 +5,7 @@ var mainObject = {
 	x : null,
 	y : null,
 	obj : null,
+	computedStyle : null,
 	incX : 1,
 	incY : 1,
 	inter : 0,
@@ -35,8 +36,9 @@ var mainObject = {
 	},
 	doBounce : function(){
 		this.obj = this.elm1.getBoundingClientRect();
-		this.x = parseInt(window.getComputedStyle(this.elm).left);
- 		this.y = parseInt(window.getComputedStyle(this.elm).top);
+		this.computedStyle = window.getComputedStyle(this.elm);
+		this.x = parseInt(this.computedStyle.left);
+ 		this.y = parseInt(this.computedStyle.top);
 		if (this.x < 0 || (this.x + 20) > this.obj.width) this.incX = -this.incX;
 		if (this.y < 0 || (this.y + 20) > this.obj.height) this.incY = -this.incY;
 		this.elm.style.left = this.x + this.incX + "px";
