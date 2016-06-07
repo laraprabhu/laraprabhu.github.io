@@ -131,3 +131,7 @@ html {
         -webkit-transform: rotate(360deg);
     }
 }
+
+#disqus_thread{
+	padding:35px;
+}
