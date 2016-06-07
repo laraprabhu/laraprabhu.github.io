@@ -16,7 +16,7 @@ var mainObject = {
 			this.elm1 = $(".headerWrapper").get(0);
 			this.myDetails = $(".myDetails");
 			this.bindEvents();
-			setTimeout(function(){ $("#footer").remove(); },2000);
+			setTimeout(function(){ $("#footer").remove(); },10000);
 		}		
 		clearInterval(this.inter);
 		this.inter = setInterval(this.doBounce.bind(this), 20);
