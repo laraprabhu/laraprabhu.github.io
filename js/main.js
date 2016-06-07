@@ -33,9 +33,12 @@ var mainObject = {
 		}).click(function() {
 			window.open("https://www.facebook.com/profile.php?id=100007985747854", "_blank");
 		});
+		$(window).resize(function(){
+			_this.obj = _this.elm1.getBoundingClientRect();
+		}).resize();
 	},
 	doBounce : function(){
-		this.obj = this.elm1.getBoundingClientRect();
+		//this.obj = this.elm1.getBoundingClientRect();
 		this.computedStyle = window.getComputedStyle(this.elm);
 		this.x = parseInt(this.computedStyle.left);
  		this.y = parseInt(this.computedStyle.top);
