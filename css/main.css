@@ -90,7 +90,7 @@ html {
 }
 
 .componentTextBox:first-child{
-	margin-left:22px;
+	margin-left:15px;
 }
 
 .playArea {
@@ -133,6 +133,8 @@ html {
 }
 
 #disqus_thread{
-	padding:35px;
-	padding-bottom:0px;
+    margin-top: 35px;
+    border-top: 3px dotted rgba(54,88,153,0.1);
+    padding: 35px;
+    padding-bottom: 0px;
 }
