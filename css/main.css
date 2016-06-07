@@ -134,4 +134,5 @@ html {
 
 #disqus_thread{
 	padding:35px;
+	padding-bottom:0px;
 }
