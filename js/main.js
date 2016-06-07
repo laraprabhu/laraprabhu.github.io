@@ -17,7 +17,7 @@ var mainObject = {
 			this.bindEvents(); 
 		}		
 		clearInterval(this.inter);
-		this.inter = setInterval(this.doBounce.bind(this), 20);
+		this.inter = setInterval(this.doBounce.bind(this), 120);
 	},
 	bindEvents : function(){
 		var _this = this;
