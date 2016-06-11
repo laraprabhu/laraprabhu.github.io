@@ -46,6 +46,11 @@ var mainObject = {
 		if (this.y < 0 || (this.y + 20) > this.obj.height) this.incY = -this.incY;
 		this.elm.style.left = this.x + this.incX + "px";
 		this.elm.style.top = this.y + this.incY + "px";
+	},
+	processAlgo : function(x, y, stepNumber, helper) {
+		var xType = typeof x, yType = typeof y;
+		xType == (xType == "function") ? "object" : xType;
+		yType == (yType == "function") ? "object" : yType;
 	}
 };
 

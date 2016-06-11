@@ -37,7 +37,7 @@ html {
     display: none;
 	color: #365899;
     background: white;
-    border-bottom : 3px dotted rgba(54,88,153,0.5);
+    border-bottom : 3px dotted rgba(54,88,153,0.1);
     border-top: 0px;
     overflow: hidden;
 }
@@ -108,14 +108,20 @@ html {
     border-radius: 3px;
     cursor: pointer;
     -webkit-transition: height 0.2s, width 0.2s;
+	-ms-transition: height 0.2s, width 0.2s;
+	-moz-transition: height 0.2s, width 0.2s;
 }
 
 .innerBox.animate {
     -webkit-animation: rotating 1s linear infinite;
+	-moz-animation: rotating 1s linear infinite;
+	-ms-animation: rotating 1s linear infinite;
 }
 
 .innerBox.stopped {
     -webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
     background: url("https://scontent.fmaa1-2.fna.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/13015464_1757760064500168_6084131892758075991_n.jpg?oh=d57b903259b1f6825ce76a626399b5f5&oe=580DC5AD");
     background-size: 100% auto;
     width: 40px;
@@ -131,10 +137,35 @@ html {
         -webkit-transform: rotate(360deg);
     }
 }
+@-moz-keyframes rotating {
+    from {
+		-moz-transform: rotate(0deg); 
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}@-ms-keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
 
 #disqus_thread{
-    margin-top: 35px;
-    border-top: 3px dotted rgba(54,88,153,0.1);
+    margin-top: 30px;
+    border-top: 3px dashed rgba(54,88,153,0.1);
     padding: 35px;
     padding-bottom: 0px;
+}
+
+.resultDisplayer {
+	margin-top : 30px;
+	border: 3px dashed rgba(54,88,153,0.1);
+}
+
+.center{
+	text-align :center;
+	padding:20px;
 }
