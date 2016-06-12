@@ -46,9 +46,10 @@ var mainObject = {
             window.open("https://www.facebook.com/profile.php?id=100007985747854", "_blank");
         });
         _this.equalsBtn.click(function() {
-            var x = _this.rhs.val().trim(),
-                y = _this.lhs.val().trim();
+            var x = this.rhs.val().trim(),
+                y = this.lhs.val().trim();
             try {
+				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
                 _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1);
             } catch (e) {
@@ -72,7 +73,10 @@ var mainObject = {
         if (this.y < 0 || (this.y + 20) > this.obj.height) this.incY = -this.incY;
         this.elm.style.left = this.x + this.incX + "px";
         this.elm.style.top = this.y + this.incY + "px";
-    },
+    },ty
+	setResultsArea : function(){
+		this.discussPartialDisplay.empty().removeClass("center");
+	},
     setItInParagraph: function(str) {
         return $("<p>").text(str).appendTo(this.resultDisplayer);
     },
