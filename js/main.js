@@ -46,8 +46,8 @@ var mainObject = {
             window.open("https://www.facebook.com/profile.php?id=100007985747854", "_blank");
         });
         _this.equalsBtn.click(function() {
-            var x = this.rhs.val().trim(),
-                y = this.lhs.val().trim();
+            var x = _this.rhs.val().trim(),
+                y = _this.lhs.val().trim();
             try {
                 _this.result = eval("(" + x + ") == (" + y + ")");
                 _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1);
