@@ -56,7 +56,7 @@ var mainObject = {
                 _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object" && evalX !== null) ? _this.getObjectRep(evalX) : x, (typeof evalY == "object" && evalY !== null) ? _this.getObjectRep(evalY) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
-                console.log("&#x2612; " + e, "error");
+                console.log("&#x26D4; " + e, "error");
             }
         });
         $(window).resize(function() {
