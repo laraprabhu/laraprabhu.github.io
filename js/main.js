@@ -104,7 +104,7 @@ var mainObject = {
         return (type === "undefined" || (type === "object" && val === null));
     },
     isNumberStringObjectCombination: function(xType, yType) {
-        return (xType == "number" && (yType == "object" && yType != null)) || ((xType == "object" && xType != null) && yType == "number") || (xType == "string" && (yType == "object" && yType != null)) || ((xType == "object" && xType != null) && yType == "string");
+        return (xType == "number" && (yType == "object" && y != null)) || ((xType == "object" && x != null) && yType == "number") || (xType == "string" && (yType == "object" && y != null)) || ((xType == "object" && x != null) && yType == "string");
     },
     isNumberStringCombination: function(xType, yType) {
         return ((xType === "number" && yType === "string") || (xType === "string" && yType === "number"));
@@ -191,7 +191,7 @@ var mainObject = {
             console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". And here we need a recursive call to the algorithm, to evaluate the newly generated expression.", "explanation");
             this.renderReferenceLookup(1005);
             return this.processAlgo(x, y, ++stepNumber, this.stringChecker(x), this.stringChecker(y));
-        } else if (this.isNumberStringObjectCombination(xType, yType)) {
+        } else if (this.isNumberStringObjectCombination(xType, yType, x , y)) {
             helper = (xType === "object") ? "RHS" : "LHS";
             console.log(helper + " is a " + ((xType === "object") ? yType : xType) + ". And its opponent is an object. So object has to be converted to its primitive form first before further evaluations.", "explanation");
             console.log("ToPrimitve(" + (helper == "RHS" ? "LHS" : "RHS") + ") will be called and the following expression will be framed,", "explanation");
