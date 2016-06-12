@@ -51,7 +51,8 @@ var mainObject = {
             try {
 				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
-                _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1, x, y);
+				x = eval("(" + x + ")"); y = eval("(" + y + ")")
+                _this.processAlgo(x, y, 1, _this.getObjectRep(x), _this.getObjectRep(y));
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log(e);
