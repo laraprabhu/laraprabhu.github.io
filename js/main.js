@@ -52,7 +52,7 @@ var mainObject = {
 				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
                 _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1, x, y);
-				console.log("RESULT :" + _this.result, _this.result.toString())
+				console.log("RESULT : " + _this.result.toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log(e);
             }
