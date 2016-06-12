@@ -94,7 +94,7 @@ var mainObject = {
 			elm.css("borderBottomColor", reset == 0 ? "rgb(255, 0, 0)" : "rgba(54, 88, 153, 0.1)");
 			elm.data("reset", +!reset);
 			if(cnt != 6){ this.blinkIt(elm, ++cnt); }
-		},500);
+		},200);
 	},
     setResultsArea : function(){
 	this.resultDisplayer.empty().removeClass("center");
