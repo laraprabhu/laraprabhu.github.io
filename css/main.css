@@ -235,8 +235,6 @@ html {
 }
 
 .buildUp{
-    position: fixed;
-	z-index:99999;
     text-align: center;
     bottom: 0;
     width: 100%;
