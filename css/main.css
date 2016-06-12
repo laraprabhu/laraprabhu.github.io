@@ -234,7 +234,8 @@ html {
   text-align:center;
 }
 
-.buildUp{
+.buildUp {
+	display: none;
 	margin-top : 30px;
     text-align: center;
     bottom: 0;
