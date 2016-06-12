@@ -57,7 +57,8 @@ var mainObject = {
 			if(x.length == 0 || y.length ==0) { 
 				_this.lhs.add(_this.rhs).css("borderBottomColor", "rgba(54, 88, 153, 0.1)").data("reset","0")
 				clearTimeout(_this.timeout);
-				_this.blinkIt(x.length == 0 ? _this.lhs : _this.rhs); 
+				_this.blinkIt(x.length == 0 ? _this.lhs : _this.rhs);
+				return;				
 			}
             try {
 				_this.setResultsArea(); 
