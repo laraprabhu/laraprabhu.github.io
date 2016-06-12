@@ -174,7 +174,7 @@ html {
 .resultDisplayer {
 	margin-top : 30px;
 	border: 3px dashed rgba(54,88,153,0.1);
-	padding:20px;
+	padding:15px;
 }
 
 .resultDisplayer  > p:first-child{
@@ -186,4 +186,24 @@ html {
 
 .center{
 	text-align :center;
+}
+
+.steps{
+    padding: 5px;
+    color: white;
+    background: #365899;
+}
+
+.steps > span{
+	 margin-left: 35px;
+}
+
+.reference{
+	font-weight: bold;
+    font-style: italic;
+    color: #365899;
+    opacity: 0.5;
+}
+.explanation{
+	padding-left: 15px;
 }

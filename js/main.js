@@ -25,8 +25,8 @@ var mainObject = {
             this.lhs = $(".lhs");
             this.equalsBtn = $(".componentButton.equals");
             this.bindEvents();
-            window.console.log = (str) => {
-                this.setItInParagraph(str);
+            window.console.log = (str, cls) => {
+                this.setItInParagraph(str, cls);
             }
         }
         clearInterval(this.inter);
@@ -51,7 +51,7 @@ var mainObject = {
             try {
 		_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
-                _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1);
+                _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1, x, y);
             } catch (e) {
                 console.log(e);
             }
@@ -63,7 +63,6 @@ var mainObject = {
                 $("#disqus_thread").addClass("discussPartialDisplay");
             }, 2000);
         });
-
     },
     doBounce: function() {
         this.computedStyle = window.getComputedStyle(this.elm);
@@ -77,8 +76,8 @@ var mainObject = {
     setResultsArea : function(){
 	this.resultDisplayer.empty().removeClass("center");
     },
-    setItInParagraph: function(str) {
-        return $("<p>").text(str).appendTo(this.resultDisplayer);
+    setItInParagraph: function(str, cls) {
+        return $("<p class="+ cls +">").html(((cls == "explanation") ? "&#x21E8; " : "") + str).appendTo(this.resultDisplayer);
     },
     stringChecker: function(val) {
         return typeof val == "string" ? "\"" + val + "\"" : typeof val == "object" ? this.getObjectRep(val) : val;
@@ -113,93 +112,93 @@ var mainObject = {
     renderReferenceLookup: function(id, additionalId) {
         switch (id) {
             case 1000:
-                console.log("Refer line numbers 1.A and B in AECA.");
+                console.log("Refer line numbers 1.A and B in AECA.", "reference");
                 break;
             case 1001:
-                console.log("Refer line numbers 1.C.i and ii in AECA.");
+                console.log("Refer line numbers 1.C.i and ii in AECA.", "reference");
                 break;
             case 1002:
                 switch (additionalId) {
                     case "number":
-                        console.log("Refer line numbers 1.C.iii ,iv ,v and vi in AECA.");
+                        console.log("Refer line numbers 1.C.iii ,iv ,v and vi in AECA.", "reference");
                         break;
                     case "string":
-                        console.log("Refer line number 1.D in AECA.");
+                        console.log("Refer line number 1.D in AECA.", "reference");
                         break;
                     case "boolean":
-                        console.log("Refer line number 1.E in AECA.");
+                        console.log("Refer line number 1.E in AECA.", "reference");
                         break;
                     case "object":
-                        console.log("Refer line number 1.F in AECA.");
+                        console.log("Refer line number 1.F in AECA.", "reference");
                         break;
                 }
                 break;
             case 1003:
-                console.log("Refer line number 2 and 3 in AECA.");
+                console.log("Refer line number 2 and 3 in AECA.", "reference");
                 break;
             case 1004:
-                console.log("Refer line number 4 and 5 in AECA.");
+                console.log("Refer line number 4 and 5 in AECA.", "reference");
                 break;
             case 1005:
-                console.log("Refer line number 6 and 7 in AECA.");
+                console.log("Refer line number 6 and 7 in AECA.", "reference");
                 break;
             case 1006:
-                console.log("Refer line number 8 and 9 in AECA.");
+                console.log("Refer line number 8 and 9 in AECA.", "reference");
                 break;
             case 1007:
-                console.log("Refer line number 10 in AECA.");
+                console.log("Refer line number 10 in AECA.", "reference");
                 break;
         }
     },
-    processAlgo: function(x, y, stepNumber, helper) {
+    processAlgo: function(x, y, stepNumber, stringX, stringY, helper) {
         var xType = typeof x,
             yType = typeof y;
         xType == (xType == "function") ? "object" : xType;
         yType == (yType == "function") ? "object" : yType;
-        console.log("STEP " + stepNumber);
+        console.log("STEP #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
         if (xType === yType) {
             if (this.isUndefinedOrNull(xType, x)) {
-                console.log("Both LHS and RHS are '" + (x + "") + "'. Hence the given expression will always be evaluated to 'true'.");
+                console.log("Both LHS and RHS are '" + (x + "") + "'. Hence the given expression will always be evaluated to 'true'.", "explanation");
                 this.renderReferenceLookup(1000);
                 return;
             } else if (xType === "number") {
                 if (x !== x || y !== y) {
-                    console.log("Though LHS and RHS are of type number, " + ((x !== x) ? "LHS" : "RHS") + " is 'NaN'. Basically 'NaN' will be evaluated to false even it is compared with itself. So the given expression will yield 'false' always.");
+                    console.log("Though LHS and RHS are of type number, " + ((x !== x) ? "LHS" : "RHS") + " is 'NaN'. Basically 'NaN' will be evaluated to false even it is compared with itself. So the given expression will yield 'false' always.", "explanation");
                     this.renderReferenceLookup(1001);
                     return;
                 }
             }
-            console.log("LHS and RHS are of same type '" + xType + "'. Additionally, both are having " + ((x === y) ? "same" : "different") + ((xType === "object") ? " References" : " values") + ". So the given expression will be evaluated to '" + (x === y).toString() + "'.");
+            console.log("LHS and RHS are of same type '" + xType + "'. Additionally, both are having " + ((x === y) ? "same" : "different") + ((xType === "object") ? " References" : " values") + ". So the given expression will be evaluated to '" + (x === y).toString() + "'.", "explanation");
             this.renderReferenceLookup(1002, xType);
             return;
         } else if (this.isUndefinedOrNull(xType, x) && this.isUndefinedOrNull(yType, y)) {
-            console.log("When 'undefined' and 'null' are compared the result will always be 'true'. In our case LHS resolves to '" + (x + "") + "' and RHS resolves to '" + (y + "") + "'. So the given expression will evalautes to 'true'");
+            console.log("When 'undefined' and 'null' are compared the result will always be 'true'. In our case LHS resolves to '" + (x + "") + "' and RHS resolves to '" + (y + "") + "'. So the given expression will evalautes to 'true'", "explanation");
             this.renderReferenceLookup(1003);
             return;
         } else if (this.isNumberStringCombination(xType, yType)) {
-            console.log("LHS is a '" + xType + "' and RHS is a '" + yType + "', Hence " + ((xType === "string") ? "LHS" : "RHS") + " will be converted to 'number' first.");
-            console.log(((xType === "string") ? "LHS" : "RHS") + " will be converted as number to form the expression (" + (x = +x, x) + " == " + (y = +y, y) + "). After that, algorithm will be called recursively by supplying the gained expression.");
+            console.log("LHS is a '" + xType + "' and RHS is a '" + yType + "', Hence " + ((xType === "string") ? "LHS" : "RHS") + " will be converted to 'number' first.", "explanation");
+            console.log(((xType === "string") ? "LHS" : "RHS") + " will be converted as number to form the expression (" + (x = +x, x) + " == " + (y = +y, y) + "). After that, algorithm will be called recursively by supplying the gained expression.", "explanation");
             this.renderReferenceLookup(1004);
-            return this.processAlgo(x, y, ++stepNumber);
+            return this.processAlgo(x, y, ++stepNumber, x , y);
         } else if (this.isNumberStringObject_WithBooleanCombination(xType, yType)) {
-            console.log("If either RHS or LHS is a boolean, then it has to be converted to number first.");
-            console.log("Here, " + ((xType == "boolean") ? "LHS" : "RHS") + " is boolean. So after translating it into a number the whole expression becomes like below,");
+            console.log("If either RHS or LHS is a boolean, then it has to be converted to number first.", "explanation");
+            console.log("Here, " + ((xType == "boolean") ? "LHS" : "RHS") + " is boolean. So after translating it into a number the whole expression becomes like below,", "explanation");
             x = this.getValForNSOBool(x, xType);
             y = this.getValForNSOBool(y, yType);
-            console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". And here we need a recursive call to the algorithm, to evaluate the newly generated expression.");
+            console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". And here we need a recursive call to the algorithm, to evaluate the newly generated expression.", "explanation");
             this.renderReferenceLookup(1005);
-            return this.processAlgo(x, y, ++stepNumber);
+            return this.processAlgo(x, y, ++stepNumber, this.stringChecker(x), this.stringChecker(y));
         } else if (this.isNumberStringObjectCombination(xType, yType)) {
             helper = (xType === "object") ? "RHS" : "LHS";
-            console.log(helper + " is a " + ((xType === "object") ? yType : xType) + ". And its opponent is an object. So object has to be converted to its primitive form first before further evaluations.");
-            console.log("ToPrimitve(" + (helper == "RHS" ? "LHS" : "RHS") + ") will be called and the following expression will be framed,");
+            console.log(helper + " is a " + ((xType === "object") ? yType : xType) + ". And its opponent is an object. So object has to be converted to its primitive form first before further evaluations.", "explanation");
+            console.log("ToPrimitve(" + (helper == "RHS" ? "LHS" : "RHS") + ") will be called and the following expression will be framed,", "explanation");
             x = this.getValForNSObject(x, helper, "RHS");
             y = this.getValForNSObject(y, helper, "LHS");
-            console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". Next, the framed expression will be passed to a recursive call of the algorithm.");
+            console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". Next, the framed expression will be passed to a recursive call of the algorithm.", "explanation");
             this.renderReferenceLookup(1006);
-            return this.processAlgo(x, y, ++stepNumber);
+            return this.processAlgo(x, y, ++stepNumber, this.stringChecker(x), this.stringChecker(y));
         } else {
-            console.log("No condition match found in AECA! Hence the given expression will be evaluated as 'false'")
+            console.log("No condition match found in AECA! Hence the given expression will be evaluated as 'false'", "explanation")
             this.renderReferenceLookup(1007);
         }
     }
