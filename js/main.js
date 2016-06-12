@@ -2,6 +2,11 @@ var mainObject = {
 	elm : null,
 	elm1 : null,
 	myDetails : null,
+	equalsBtn : null,
+	resultDisplayer : null,
+	lhs : null,
+	rhs : null,
+	result : true,
 	x : null,
 	y : null,
 	obj : null,
@@ -15,7 +20,14 @@ var mainObject = {
 			this.elm = $(".innerBox").get(0);
 			this.elm1 = $(".headerWrapper").get(0);
 			this.myDetails = $(".myDetails");
+			this.resultDisplayer = $(".resultDisplayer");
+			this.rhs = $(".rhs");
+			this.lhs = $(".lhs");
+			this.equalsBtn = $(".componentButton.equals");
 			this.bindEvents();
+			window.console.log = (str) => {
+				this.setItInParagraph(str);
+			}
 		}		
 		clearInterval(this.inter);
 		this.inter = setInterval(this.doBounce.bind(this), 20);
@@ -33,6 +45,15 @@ var mainObject = {
 		}).click(function() {
 			window.open("https://www.facebook.com/profile.php?id=100007985747854", "_blank");
 		});
+		_this.equalsBtn.click(function(){
+			var x = this.rhs.val().trim(), y = this.lhs.val().trim();
+			try {
+				_this.result = eval("(" + x + ") == (" + y + ")");
+				_this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1);
+			} catch(e) {
+				console.log(e);
+			}
+		});
 		$(window).resize(function(){
 			_this.obj = _this.elm1.getBoundingClientRect();
 		}).resize().load(function(){
@@ -43,7 +64,6 @@ var mainObject = {
 		
 	},
 	doBounce : function(){
-		//this.obj = this.elm1.getBoundingClientRect();
 		this.computedStyle = window.getComputedStyle(this.elm);
 		this.x = parseInt(this.computedStyle.left);
  		this.y = parseInt(this.computedStyle.top);
@@ -52,10 +72,130 @@ var mainObject = {
 		this.elm.style.left = this.x + this.incX + "px";
 		this.elm.style.top = this.y + this.incY + "px";
 	},
+	setItInParagraph : function(str){
+		return $("<p>").text(str).appendTo(this.resultDisplayer);
+	},
+	stringChecker : function(val) {
+		return typeof val == "string" ? "\"" + val + "\"" : typeof val == "object" ? this.getObjectRep(val) : val;
+	},
+	getValForNSOBool : function(val, valType){
+		val = valType == "boolean" ? +val : val;
+		return val;
+	},
+	getValForNSObject : function(val, helper, helperVal) {
+		val = (helper == helperVal) ? this.toPrimitive(val) : val;
+		return val;
+	},
+	toPrimitive : function(obj, helper) {
+		helper = typeof obj.valueOf();
+		return (helper === "object") ? obj.valueOf().toString() : (helper == "string") ? obj.valueOf() : obj.valueOf();
+	},
+	getObjectRep : function(val) {
+		return Object.prototype.toString.call(val).includes("Array") ? "[...]" : "{Object...}";
+	},
+	isUndefinedOrNull : function(type, val) {
+		return (type === "undefined" || (type === "object" && val === null));
+	},
+	isNumberStringObjectCombination : function(xType, yType) {
+		return (xType == "number" && yType == "object") || (xType == "object" && yType == "number") || (xType == "string" && yType == "object") || (xType == "object" && yType == "string");
+	},
+	isNumberStringCombination : function(xType, yType) {
+		return ((xType === "number" && yType === "string") || (xType === "string" && yType === "number"));
+	},
+	isNumberStringObject_WithBooleanCombination : function(xType, yType) {
+		return xType === "boolean" || yType === "boolean";
+	},
+	renderReferenceLookup : function(id, additionalId) {
+		 switch (id) {
+			 case 1000:
+				 console.log("Refer line numbers 1.A and B in AECA.");
+				 break;
+			 case 1001:
+				 console.log("Refer line numbers 1.C.i and ii in AECA.");
+				 break;
+			 case 1002:
+				 switch (additionalId) {
+					 case "number":
+						 console.log("Refer line numbers 1.C.iii ,iv ,v and vi in AECA.");
+						 break;
+					 case "string":
+						 console.log("Refer line number 1.D in AECA.");
+						 break;
+					 case "boolean":
+						 console.log("Refer line number 1.E in AECA.");
+						 break;
+					 case "object":
+						 console.log("Refer line number 1.F in AECA.");
+						 break;
+				 }
+				 break;
+			 case 1003:
+				 console.log("Refer line number 2 and 3 in AECA.");
+				 break;
+			 case 1004:
+				 console.log("Refer line number 4 and 5 in AECA.");
+				 break;
+			 case 1005:
+				 console.log("Refer line number 6 and 7 in AECA.");
+				 break;
+			 case 1006:
+				 console.log("Refer line number 8 and 9 in AECA.");
+				 break;
+			 case 1006:
+				 console.log("Refer line number 10 in AECA.");
+				 break;
+		 }
+	},
 	processAlgo : function(x, y, stepNumber, helper) {
 		var xType = typeof x, yType = typeof y;
 		xType == (xType == "function") ? "object" : xType;
 		yType == (yType == "function") ? "object" : yType;
+		console.log("STEP " + stepNumber);
+		if (xType === yType) {
+			if (this.isUndefinedOrNull(xType, x)) {
+				 console.log("Both LHS and RHS are '" + (x + "") + "'. Hence the given expression will always be evaluated to 'true'.");
+				 this.renderReferenceLookup(1000);
+				 return;
+			} else if (xType === "number") {
+				 if (x !== x || y !== y) {
+					 console.log("Though LHS and RHS are of type number, " + ((x !== x) ? "LHS" : "RHS") + " is 'NaN'. Basically 'NaN' will be evaluated to false even it is compared with itself. So the given expression will yield 'false' always.");
+					 this.renderReferenceLookup(1001);
+					 return;
+				 }
+			}
+			console.log("LHS and RHS are of same type '" + xType + "'. Additionally, both are having " + ((x === y) ? "same" : "different") + ((xType === "object") ? " References" : " values") + ". So the given expression will be evaluated to '" + (x === y).toString() + "'.");
+			this.renderReferenceLookup(1002, xType);
+			return;
+		} else if (this.isUndefinedOrNull(xType, x) && this.isUndefinedOrNull(yType, y)) {
+			 console.log("When 'undefined' and 'null' are compared the result will always be 'true'. In our case LHS resolves to '" + (x + "") + "' and RHS resolves to '" + (y + "") + "'. So the given expression will evalautes to 'true'");
+			 this.renderReferenceLookup(1003);
+			 return;
+		} else if (this.isNumberStringCombination(xType, yType)) {
+			 console.log("LHS is a '" + xType + "' and RHS is a '" + yType + "', Hence " + ((xType === "string") ? "LHS" : "RHS") + " will be converted to 'number' first.");
+			 console.log(((xType === "string") ? "LHS" : "RHS") + " will be converted as number to form the expression (" + (x = +x, x) + " == " + (y = +y, y) + "). After that, algorithm will be called recursively by supplying the gained expression.");
+			 this.renderReferenceLookup(1004);
+			 return this.processAlgo(x, y, ++stepNumber);
+		} else if (this.isNumberStringObject_WithBooleanCombination(xType, yType)) {
+			 console.log("If either RHS or LHS is a boolean, then it has to be converted to number first.");
+			 console.log("Here, " + ((xType == "boolean") ? "LHS" : "RHS") + " is boolean. So after translating it into a number the whole expression becomes like below,");
+			 x = this.getValForNSOBool(x, xType);
+			 y = this.getValForNSOBool(y, yType);
+			 console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". And here we need a recursive call to the algorithm, to evaluate the newly generated expression.");
+			 this.renderReferenceLookup(1005);
+			 return this.processAlgo(x, y, ++stepNumber);
+		} else if (this.isNumberStringObjectCombination(xType, yType)) {
+			 helper = (xType === "object") ? "RHS" : "LHS";
+			 console.log(helper + " is a " + ((xType === "object") ? yType : xType) + ". And its opponent is an object. So object has to be converted to its primitive form first before further evaluations.");
+			 console.log("ToPrimitve(" + (helper == "RHS" ? "LHS" : "RHS") + ") will be called and the following expression will be framed,");
+			 x = this.getValForNSObject(x, helper, "RHS");
+			 y = this.getValForNSObject(y, helper, "LHS");
+			 console.log(this.stringChecker(x) + " == " + this.stringChecker(y) + ". Next, the framed expression will be passed to a recursive call of the algorithm.");
+			 this.renderReferenceLookup(1006);
+			 return this.processAlgo(x, y, ++stepNumber);
+		} else {
+			console.log("No condition match found in AECA! Hence the given expression will be evaluated as 'false'")
+			this.renderReferenceLookup(1007);
+		}
 	}
 };
 
