@@ -38,7 +38,7 @@ var mainObject = {
 		}).resize().load(function(){
 			setTimeout(function(){
 				$("#disqus_thread").addClass("discussPartialDisplay");
-			}, 3000);
+			}, 1500);
 		});
 		
 	},
