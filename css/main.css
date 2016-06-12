@@ -228,3 +228,7 @@ html {
 .false{
 	background:red;
 }
+
+.error{
+  color:red;
+}
