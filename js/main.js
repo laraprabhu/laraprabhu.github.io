@@ -53,7 +53,7 @@ var mainObject = {
                 _this.result = eval("(" + x + ") == (" + y + ")");
 				evalX = eval("(" + x + ")");
 				evalY = eval("(" + y + ")");
-                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object") ? _this.getObjectRep(evalX) : x, (typeof evalY == "object") ? _this.getObjectRep(evalY) : y);
+                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object" && evalX !== null) ? _this.getObjectRep(evalX) : x, (typeof evalY == "object" && evalY !== null) ? _this.getObjectRep(evalY) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log(e);
@@ -104,7 +104,7 @@ var mainObject = {
         return (type === "undefined" || (type === "object" && val === null));
     },
     isNumberStringObjectCombination: function(xType, yType) {
-        return (xType == "number" && yType == "object") || (xType == "object" && yType == "number") || (xType == "string" && yType == "object") || (xType == "object" && yType == "string");
+        return (xType == "number" && (yType == "object" && yType != null)) || ((xType == "object" && xType != null) && yType == "number") || (xType == "string" && (yType == "object" && yType != null)) || ((xType == "object" && xType != null) && yType == "string");
     },
     isNumberStringCombination: function(xType, yType) {
         return ((xType === "number" && yType === "string") || (xType === "string" && yType === "number"));
