@@ -75,7 +75,7 @@ var mainObject = {
         this.elm.style.top = this.y + this.incY + "px";
     },
     setResultsArea : function(){
-	this.discussPartialDisplay.empty().removeClass("center");
+	this.resultDisplayer.empty().removeClass("center");
     },
     setItInParagraph: function(str) {
         return $("<p>").text(str).appendTo(this.resultDisplayer);
