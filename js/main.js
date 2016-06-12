@@ -83,7 +83,7 @@ var mainObject = {
         }).resize().load(function() {
             setTimeout(function() {
                 $("#disqus_thread").addClass("discussPartialDisplay");
-				if(window.localStorage.getItem("buildUp") == null) _this.buildUp.show("slow");
+				if(window.localStorage.getItem("buildUp") == null) _this.buildUp.fadeIn("slow");
             }, 2000);
         });
     },
