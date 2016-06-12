@@ -177,6 +177,13 @@ html {
 	padding:20px;
 }
 
+.resultDisplayer  > p:first-child{
+	margin-top:0;
+}
+.resultDisplayer  > p:last-child{
+	margin-bottom:0;
+}
+
 .center{
 	text-align :center;
 }
