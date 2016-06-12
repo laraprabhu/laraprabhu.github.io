@@ -55,8 +55,8 @@ var mainObject = {
             var x = _this.lhs.val().trim(),
                 y = _this.rhs.val().trim(),evalX,evalY;
 			if(x.length == 0 || y.length ==0) { 
-				this.lhs.add(this.rhs).css("borderBottomColor", "rgba(54, 88, 153, 0.1)").data("reset","0")
-				clearTimeout(this.timeout);
+				_this.lhs.add(_this.rhs).css("borderBottomColor", "rgba(54, 88, 153, 0.1)").data("reset","0")
+				clearTimeout(_this.timeout);
 				_this.blinkIt(x.length == 0 ? _this.lhs : _this.rhs); 
 			}
             try {
