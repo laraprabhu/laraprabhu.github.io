@@ -54,7 +54,7 @@ var mainObject = {
 		});
 		_this.buildUp.click(function(){
 			window.localStorage.setItem("buildUp", 1);
-			$(this).fadeIn("fast", function(){
+			$(this).fadeOut("fast", function(){
 				$(this).remove();
 			})
 		});
