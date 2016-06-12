@@ -37,7 +37,7 @@ var mainObject = {
 			_this.obj = _this.elm1.getBoundingClientRect();
 		}).resize().load(function(){
 			setTimeout(function(){
-				$("#disqus_thread").css("opacity", 0.1);
+				$("#disqus_thread").addClass("discussPartialDisplay");
 			}, 3000);
 		});
 		

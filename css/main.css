@@ -158,10 +158,13 @@ html {
     border-top: 3px dashed rgba(54,88,153,0.1);
     padding: 35px;
     padding-bottom: 0px;
-	opacity : 1;
 	-webkit-transition: opacity 0.2s, width 0.5s;
 	-moz-transition: opacity 0.2s, width 0.5s;
 	-ms-transition: opacity 0.2s, width 0.5s;
+}
+
+.discussPartialDisplay{
+	opacity:0.1
 }
 
 #disqus_thread:hover{
