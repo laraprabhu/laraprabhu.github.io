@@ -24,7 +24,7 @@ var mainObject = {
             this.rhs = $(".rhs");
             this.lhs = $(".lhs");
             this.equalsBtn = $(".componentButton.equals");
-			this.buildUp = $(".buildUp").toggle(window.localStorage.getItem("buildUp") != null);
+			this.buildUp = $(".buildUp").toggle(window.localStorage.getItem("buildUp") == null);
             this.bindEvents();
             window.console.log = (str, cls) => {
                 this.setItInParagraph(str, cls);
