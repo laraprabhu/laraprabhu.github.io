@@ -50,10 +50,15 @@ var mainObject = {
 		});
 		_this.lhs.add(_this.rhs).keydown(function(e){
 			if(e.keyCode == 13)	_this.equalsBtn.click();
-		})
+		});
         _this.equalsBtn.click(function() {
             var x = _this.lhs.val().trim(),
                 y = _this.rhs.val().trim(),evalX,evalY;
+			if(x.length == 0 || y.length ==0) { 
+				this.lhs.add(this.rhs).css("borderBottomColor", "rgba(54, 88, 153, 0.1)").data("reset","0")
+				clearTimeout(this.timeout);
+				_this.blinkIt(x.length == 0 ? _this.lhs : _this.rhs); 
+			}
             try {
 				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
@@ -82,6 +87,14 @@ var mainObject = {
         this.elm.style.left = this.x + this.incX + "px";
         this.elm.style.top = this.y + this.incY + "px";
     },
+	blinkIt : function(elm, cnt = 1){
+		this.timeout = setTimeout((reset) => {
+			reset = +elm.data("reset");
+			elm.css("borderBottomColor", reset == 0 ? "rgb(255, 0, 0)" : "rgba(54, 88, 153, 0.1)");
+			elm.data("reset", +!reset);
+			if(cnt != 6){ this.blinkIt(elm, ++cnt); }
+		});
+	},
     setResultsArea : function(){
 	this.resultDisplayer.empty().removeClass("center");
     },
