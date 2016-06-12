@@ -103,7 +103,7 @@ var mainObject = {
     isUndefinedOrNull: function(type, val) {
         return (type === "undefined" || (type === "object" && val === null));
     },
-    isNumberStringObjectCombination: function(xType, yType) {
+    isNumberStringObjectCombination: function(xType, yType, x , y) {
         return (xType == "number" && (yType == "object" && y != null)) || ((xType == "object" && x != null) && yType == "number") || (xType == "string" && (yType == "object" && y != null)) || ((xType == "object" && x != null) && yType == "string");
     },
     isNumberStringCombination: function(xType, yType) {
