@@ -24,7 +24,7 @@ var mainObject = {
             this.rhs = $(".rhs");
             this.lhs = $(".lhs");
             this.equalsBtn = $(".componentButton.equals");
-			this.buildUp = $(".buildUp").toggle(window.localStorage.getItem("buildUp") == null);
+			this.buildUp = $(".buildUp");
             this.bindEvents();
             window.console.log = (str, cls) => {
                 this.setItInParagraph(str, cls);
@@ -83,7 +83,7 @@ var mainObject = {
         }).resize().load(function() {
             setTimeout(function() {
                 $("#disqus_thread").addClass("discussPartialDisplay");
-				_this.buildUp.slideDown("slow");
+				if(window.localStorage.getItem("buildUp") == null) _this.buildUp.show("slow");
             }, 2000);
         });
     },
