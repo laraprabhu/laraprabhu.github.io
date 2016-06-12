@@ -233,3 +233,14 @@ html {
   color:red;
   text-align:center;
 }
+
+.buildUp{
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    background: #365899;
+    padding: 10px;
+    color: white;
+	cursor:pointer;
+}

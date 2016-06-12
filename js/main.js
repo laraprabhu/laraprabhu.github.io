@@ -24,6 +24,7 @@ var mainObject = {
             this.rhs = $(".rhs");
             this.lhs = $(".lhs");
             this.equalsBtn = $(".componentButton.equals");
+			this.buildUp = $(".buildUp").toggle(window.localStorage.getItem("buildUp") != null);
             this.bindEvents();
             window.console.log = (str, cls) => {
                 this.setItInParagraph(str, cls);
@@ -50,6 +51,12 @@ var mainObject = {
 		});
 		_this.lhs.add(_this.rhs).keydown(function(e){
 			if(e.keyCode == 13)	_this.equalsBtn.click();
+		});
+		_this.buildUp.click(function(){
+			window.localStorage.setItem("buildUp", 1);
+			$(this).fadeIn("fast", function(){
+				$(this).remove();
+			})
 		});
         _this.equalsBtn.click(function() {
             var x = _this.lhs.val().trim(),
