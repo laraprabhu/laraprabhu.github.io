@@ -174,9 +174,9 @@ html {
 .resultDisplayer {
 	margin-top : 30px;
 	border: 3px dashed rgba(54,88,153,0.1);
+	padding:20px;
 }
 
 .center{
 	text-align :center;
-	padding:20px;
 }
