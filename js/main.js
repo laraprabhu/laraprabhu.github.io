@@ -146,7 +146,7 @@ var mainObject = {
             case 1006:
                 console.log("Refer line number 8 and 9 in AECA.");
                 break;
-            case 1006:
+            case 1007:
                 console.log("Refer line number 10 in AECA.");
                 break;
         }
