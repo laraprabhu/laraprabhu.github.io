@@ -49,9 +49,10 @@ var mainObject = {
             var x = _this.lhs.val().trim(),
                 y = _this.rhs.val().trim();
             try {
-		_this.setResultsArea(); 
+				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
                 _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1, x, y);
+				console.log("RESULT :" + _this.result, _this.result.toString())
             } catch (e) {
                 console.log(e);
             }

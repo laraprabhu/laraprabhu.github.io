@@ -203,7 +203,25 @@ html {
     font-style: italic;
     color: #365899;
     opacity: 0.5;
+	-webkit-transition: opacity 0.2s, width 0.5s;
+	-moz-transition: opacity 0.2s, width 0.5s;
+	-ms-transition: opacity 0.2s, width 0.5s;
+}
+.reference:hover{
+	opacity:1;
 }
 .explanation{
 	padding-left: 15px;
+}
+
+.true,.false{
+	color:white;
+	font-weight:bold;
+}
+
+.true{
+	background:green;
+}
+.false{
+	background:red;
 }
