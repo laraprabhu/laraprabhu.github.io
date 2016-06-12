@@ -35,7 +35,12 @@ var mainObject = {
 		});
 		$(window).resize(function(){
 			_this.obj = _this.elm1.getBoundingClientRect();
-		}).resize();
+		}).resize().load(function(){
+			setTimeout(function(){
+				$("#disqus_thread").css("opacity", 1);
+			}, 3000);
+		});
+		
 	},
 	doBounce : function(){
 		//this.obj = this.elm1.getBoundingClientRect();
