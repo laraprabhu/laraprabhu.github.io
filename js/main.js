@@ -45,6 +45,9 @@ var mainObject = {
         }).click(function() {
             window.open("https://www.facebook.com/profile.php?id=100007985747854", "_blank");
         });
+		_this.resultDisplayer.on("click", ".reference", function(){
+			window.open("http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3", "_blank");
+		});
         _this.equalsBtn.click(function() {
             var x = _this.lhs.val().trim(),
                 y = _this.rhs.val().trim(),evalX,evalY;
