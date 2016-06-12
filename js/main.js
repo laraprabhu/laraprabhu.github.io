@@ -49,7 +49,7 @@ var mainObject = {
 			window.open("http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3", "_blank");
 		});
 		_this.lhs.add(_this.rhs).keydown(function(e){
-			if(e.keycode == 13)	_this.equalsBtn.click();
+			if(e.keyCode == 13)	_this.equalsBtn.click();
 		})
         _this.equalsBtn.click(function() {
             var x = _this.lhs.val().trim(),
