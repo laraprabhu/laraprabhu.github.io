@@ -47,12 +47,13 @@ var mainObject = {
         });
         _this.equalsBtn.click(function() {
             var x = _this.lhs.val().trim(),
-                y = _this.rhs.val().trim();
+                y = _this.rhs.val().trim(),evalX,evalY;
             try {
 				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
-				x = eval("(" + x + ")"); y = eval("(" + y + ")")
-                _this.processAlgo(x, y, 1, _this.getObjectRep(x), _this.getObjectRep(y));
+				evalX = eval("(" + x + ")");
+				evalY = eval("(" + y + ")");
+                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object") ? _this.getObjectRep(x) : x, (typeof evalY == "object") ? _this.getObjectRep(y) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log(e);
