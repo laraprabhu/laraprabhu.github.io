@@ -203,6 +203,7 @@ html {
     font-style: italic;
     color: #365899;
     opacity: 0.5;
+	cursor : pointer;
 	-webkit-transition: opacity 0.2s, width 0.5s;
 	-moz-transition: opacity 0.2s, width 0.5s;
 	-ms-transition: opacity 0.2s, width 0.5s;
