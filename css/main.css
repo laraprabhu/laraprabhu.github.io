@@ -158,6 +158,12 @@ html {
     border-top: 3px dashed rgba(54,88,153,0.1);
     padding: 35px;
     padding-bottom: 0px;
+	opacity : 0.1;
+	-webkit-transition: opacity 0.2s, width 0.2s;
+}
+
+#disqus_thread:hover{
+	opacity : 1;
 }
 
 .resultDisplayer {
