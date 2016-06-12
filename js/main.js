@@ -49,7 +49,7 @@ var mainObject = {
             var x = this.rhs.val().trim(),
                 y = this.lhs.val().trim();
             try {
-				_this.setResultsArea(); 
+		_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
                 _this.processAlgo(eval("(" + x + ")"), eval("(" + y + ")"), 1);
             } catch (e) {
@@ -73,10 +73,10 @@ var mainObject = {
         if (this.y < 0 || (this.y + 20) > this.obj.height) this.incY = -this.incY;
         this.elm.style.left = this.x + this.incX + "px";
         this.elm.style.top = this.y + this.incY + "px";
-    },ty
-	setResultsArea : function(){
-		this.discussPartialDisplay.empty().removeClass("center");
-	},
+    },
+    setResultsArea : function(){
+	this.discussPartialDisplay.empty().removeClass("center");
+    },
     setItInParagraph: function(str) {
         return $("<p>").text(str).appendTo(this.resultDisplayer);
     },
