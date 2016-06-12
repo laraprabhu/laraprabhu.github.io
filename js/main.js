@@ -53,7 +53,7 @@ var mainObject = {
                 _this.result = eval("(" + x + ") == (" + y + ")");
 				evalX = eval("(" + x + ")");
 				evalY = eval("(" + y + ")");
-                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object") ? _this.getObjectRep(x) : x, (typeof evalY == "object") ? _this.getObjectRep(y) : y);
+                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object") ? _this.getObjectRep(evalX) : x, (typeof evalY == "object") ? _this.getObjectRep(evalY) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log(e);
