@@ -156,7 +156,7 @@ var mainObject = {
             yType = typeof y;
         xType == (xType == "function") ? "object" : xType;
         yType == (yType == "function") ? "object" : yType;
-        console.log("STEP #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
+        console.log("CALL #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
         if (xType === yType) {
             if (this.isUndefinedOrNull(xType, x)) {
                 console.log("Both LHS and RHS are '" + (x + "") + "'. Hence the given expression will always be evaluated to 'true'.", "explanation");
