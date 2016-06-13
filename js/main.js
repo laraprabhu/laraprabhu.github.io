@@ -14,6 +14,7 @@ var mainObject = {
     incX: 1,
     incY: 1,
     inter: 0,
+    specialCases : ["function","symbol"],
     init: function(eventBinding) {
         eventBinding = eventBinding || false;
         if (eventBinding) {
@@ -68,10 +69,10 @@ var mainObject = {
 				return;				
 			}
             try {
-				_this.setResultsArea(); 
+		_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
 		var evalX = eval("(" + x + ")"), evalY = eval("(" + y + ")"), xType = typeof evalX, yType = typeof evalY;
-		xType = (xType == "function") ? "object" : xType; yType = (yType == "function") ? "object" : yType;
+		xType = _this.getType(xType); yType = _this.getType(yType);
                 _this.processAlgo(evalX, evalY, 1, (xType == "object" && evalX !== null) ? _this.getObjectRep(evalX) : x, (yType == "object" && evalY !== null) ? _this.getObjectRep(evalY) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
@@ -104,13 +105,18 @@ var mainObject = {
 			if(cnt != 6){ this.blinkIt(elm, ++cnt); }
 		},200);
 	},
+    getType : function(val){
+      return this.specialCases.includes(val) ? "object" : val;	
+    },
     setResultsArea : function(){
 	this.resultDisplayer.empty().removeClass("center");
     },
     setItInParagraph: function(str, cls) {
         return $("<p class="+ cls +">").html(((cls == "explanation") ? "&#x21E8; " : "") + str).appendTo(this.resultDisplayer);
     },
-    stringChecker: function(val) {
+    stringChecker: function(val, helper) {
+    	helper = typeof val;
+    	helper = _this.getType(helper);
         return typeof val == "string" ? "\"" + val + "\"" : typeof val == "object" ? this.getObjectRep(val) : val;
     },
     getValForNSOBool: function(val, valType) {
@@ -123,6 +129,7 @@ var mainObject = {
     },
     toPrimitive: function(obj, helper) {
         helper = typeof obj.valueOf();
+        helper = _this.getType(helper);
         return (helper === "object") ? obj.valueOf().toString() : (helper == "string") ? obj.valueOf() : obj.valueOf();
     },
     getObjectRep: function(val) {
@@ -184,8 +191,8 @@ var mainObject = {
     processAlgo: function(x, y, stepNumber, stringX, stringY, helper) {
         var xType = typeof x,
             yType = typeof y;
-        xType = (xType == "function") ? "object" : xType;
-        yType = (yType == "function") ? "object" : yType;
+        xType = _this.getType(xType);
+        yType = _this.getType(yType);
         console.log("CALL #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
         if (xType === yType) {
             if (this.isUndefinedOrNull(xType, x)) {
