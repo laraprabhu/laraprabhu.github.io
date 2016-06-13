@@ -116,7 +116,7 @@ var mainObject = {
     },
     stringChecker: function(val, helper) {
     	helper = typeof val;
-    	helper = _this.getType(helper);
+    	helper = this.getType(helper);
         return typeof val == "string" ? "\"" + val + "\"" : typeof val == "object" ? this.getObjectRep(val) : val;
     },
     getValForNSOBool: function(val, valType) {
@@ -129,7 +129,7 @@ var mainObject = {
     },
     toPrimitive: function(obj, helper) {
         helper = typeof obj.valueOf();
-        helper = _this.getType(helper);
+        helper = this.getType(helper);
         return (helper === "object") ? obj.valueOf().toString() : (helper == "string") ? obj.valueOf() : obj.valueOf();
     },
     getObjectRep: function(val) {
@@ -191,8 +191,8 @@ var mainObject = {
     processAlgo: function(x, y, stepNumber, stringX, stringY, helper) {
         var xType = typeof x,
             yType = typeof y;
-        xType = _this.getType(xType);
-        yType = _this.getType(yType);
+        xType = this.getType(xType);
+        yType = this.getType(yType);
         console.log("CALL #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
         if (xType === yType) {
             if (this.isUndefinedOrNull(xType, x)) {
