@@ -184,8 +184,8 @@ var mainObject = {
     processAlgo: function(x, y, stepNumber, stringX, stringY, helper) {
         var xType = typeof x,
             yType = typeof y;
-        xType == (xType == "function") ? "object" : xType;
-        yType == (yType == "function") ? "object" : yType;
+        xType = (xType == "function") ? "object" : xType;
+        yType = (yType == "function") ? "object" : yType;
         console.log("CALL #" + stepNumber + "<span>Arguments - LHS : " + stringX + " RHS : " + stringY + "</span>", "steps");
         if (xType === yType) {
             if (this.isUndefinedOrNull(xType, x)) {
