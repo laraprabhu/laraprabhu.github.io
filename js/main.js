@@ -70,9 +70,9 @@ var mainObject = {
             try {
 				_this.setResultsArea(); 
                 _this.result = eval("(" + x + ") == (" + y + ")");
-				evalX = eval("(" + x + ")");
-				evalY = eval("(" + y + ")");
-                _this.processAlgo(evalX, evalY, 1, (typeof evalX == "object" && evalX !== null) ? _this.getObjectRep(evalX) : x, (typeof evalY == "object" && evalY !== null) ? _this.getObjectRep(evalY) : y);
+		var evalX = eval("(" + x + ")"), evalY = eval("(" + y + ")"), xType = typeof evalX, yType = typeof evalY;
+		xType = (xType == "function") ? "object" : xType; yType = (yType == "function") ? "object" : yType;
+                _this.processAlgo(evalX, evalY, 1, (xType == "object" && evalX !== null) ? _this.getObjectRep(evalX) : x, (yType == "object" && evalY !== null) ? _this.getObjectRep(evalY) : y);
 				console.log("RESULT : " + _this.result.toString().toUpperCase(), _this.result.toString())
             } catch (e) {
                 console.log("&#x26D4; " + e, "error");
